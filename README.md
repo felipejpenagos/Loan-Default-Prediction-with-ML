@@ -6,25 +6,25 @@ A key challenge addressed in the project is class imbalance—defaults represent
 
 ## Structure
 
-> **"Extract Transform and Load (ETL) Data CreditRiskML.ipynb"**  
+> **"Extract Transform and Load (ETL) Data NB"**  
 > *Load and preprocess the data.*
 
-> **"Exploratory_data_analysis_(EDA)_CreditRiskML.ipynb"**  
+> **"Exploratory Data Analysis (EDA) NB"**  
 > *Exploratory data analysis.*
 
-> **"Feature_Engineering_CreditRiskML.ipynb"**  
-> *Feature transformations and encoding.*
+> **"Feature Engineering NB"**  
+> *Feature transformations, scaling, and one-hot encoding.*
 
-> **"modelA_Logistic_Regression_CreditRiskML.ipynb"**  
+> **"Model I Logistic Regression NB"**  
 > *Logistic regression model.*
 
-> **"Advanced_model_evaluation_LogRegression_CreditRiskML"**  
+> **"Advanced Model Evaluation Log Regression"**  
 > *Custom model evaluation metrics.*
 
-> **"Random_Forest_classification_CreditRiskML.ipynb"**  
+> **"Model II Random Forest Classification NB"**  
 > *Random forest with hyperparameter tuning.*
 
-> **"Accuracy_and_Class_balancing_CreditRiskML.ipynb"**  
+> **"Accuracy and Class Balancing NB"**  
 > *Handling class imbalance using weights, resampling, and `SMOTE`.*
 
 
