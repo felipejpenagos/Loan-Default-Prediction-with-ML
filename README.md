@@ -1,38 +1,52 @@
+<div align="center">
+
 # Loan Default Prediction with Machine Learning
 
-This project is an end-to-end case study focused on predicting loan defaults using classification models. It includes the complete **machine learning pipeline**: data loading and cleaning, exploratory data analysis, feature engineering, model training, evaluation, and hyperparameter tuning. Both **logistic regression** and **random forest classifiers** are implemented and compared.
+### An end-to-end credit-risk pipeline for an imbalanced vehicle-loan dataset
 
-A key challenge addressed in the project is class imbalance– defaults represent only ~21% of the dataset. Several strategies were applied to handle this, including class weighting (`balanced` and manual), resampling (upsampling/downsampling), and synthetic oversampling (**SMOTE**). Model performance was evaluated using metrics such as **accuracy**, **precision**, **recall**, **F1 score**, **ROC-AUC**, and **confusion matrices**. The best-performing model was a downsampled **random forest**, which provided improved recall while maintaining reasonable precision and interpretability.
+[![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)](#requirements)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white)](#requirements)
+[![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)](#notebooks)
 
-## Structure
+</div>
 
-> **"Extract Transform and Load (ETL) Data NB"**  
-> *Load and preprocess the data.*
+---
 
-> **"Exploratory Data Analysis (EDA) NB"**  
-> *Exploratory data analysis.*
+Predicting which borrowers will default on a vehicle loan, using about 233,000 loans and 40 candidate features. Only about 21% of loans default, so the central problem is not fitting a classifier but making one that actually finds the defaults instead of predicting "no default" for everyone.
 
-> **"Feature Engineering NB"**  
-> *Feature transformations, scaling, and one-hot encoding.*
+## Pipeline
 
-> **"Model I Logistic Regression NB"**  
-> *Logistic regression model.*
+1. **Extract, transform, load.** Load and clean the raw loan records; derive borrower age and disbursal month from the date fields.
+2. **Exploratory analysis.** Profile categorical and continuous features and their relationship with default.
+3. **Feature engineering.** Binning, grouping, scaling, and one-hot encoding.
+4. **Model A: logistic regression.** A baseline with a full evaluation suite: confusion matrix, precision, recall, F1, ROC curve.
+5. **Model B: random forest.** Tuning the number of trees and maximum depth; capping depth at 15 reduced overfitting and gave the best ROC-AUC (0.65).
+6. **Class balancing.** Balanced and manual class weights, up- and down-sampling, and SMOTE, each compared with the same evaluation function.
 
-> **"Advanced Model Evaluation Log Regression"**  
-> *Custom model evaluation metrics.*
+## What the evaluation shows
 
-> **"Model II Random Forest Classification NB"**  
-> *Random forest with hyperparameter tuning.*
+The unbalanced logistic regression scores 78% accuracy while catching almost no defaults, which is roughly what predicting "no default" for everyone would score. Rebalancing trades some accuracy for recall: the balanced models identify about half of all defaults. The best trade-off came from a random forest trained on down-sampled data.
 
-> **"Accuracy and Class Balancing NB"**  
-> *Handling class imbalance using weights, resampling, and `SMOTE`.*
+## Notebooks
 
+| Notebook | Stage |
+|---|---|
+| `Extract Transform and Load (ETL) Data CreditRiskML.ipynb` | Loading and cleaning |
+| `Exploratory_data_analysis_(EDA)_CreditRiskML.ipynb` | Exploratory analysis |
+| `Feature_Engineering_CreditRiskML.ipynb` | Feature engineering |
+| `modelA_Logistic_Regression_CreditRiskML.ipynb` | Model A: logistic regression |
+| `Advanced_model_evaluation_LogRegression_CreditRiskML.ipynb` | Evaluation metrics and ROC |
+| `Random_Forest_classification_CreditRiskML.ipynb` | Model B: random forest and tuning |
+| `Accuracy_and_Class_balancing_CreditRiskML.ipynb` | Class weighting, resampling, SMOTE |
 
-
+`data/` holds the cleaned datasets produced at each stage and a data dictionary.
 
 ## Requirements
-- Python 3.x
-- pandas, numpy, scikit-learn, imbalanced-learn, matplotlib, seaborn
 
-## Outcome
-By iterating through multiple balancing and modeling techniques, the study demonstrates how thoughtful preprocessing and evaluation can significantly enhance classification performance in imbalanced datasets.
+```bash
+pip install pandas numpy scikit-learn imbalanced-learn matplotlib seaborn
+```
+
+## About
+
+Developed as part of the Corporate Finance Institute's machine-learning case study on credit risk.
